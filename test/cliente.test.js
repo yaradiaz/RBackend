@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../src/app'); // Importa solo la app
 const db = require('../src/config/db');
 
 describe('Pruebas de rutas de Cliente', () => {
@@ -9,7 +9,7 @@ describe('Pruebas de rutas de Cliente', () => {
   });
 
   afterAll(async () => {
-    await db.close(); 
+    await db.close(); // Cierra conexión a la base de datos
   });
 });
 

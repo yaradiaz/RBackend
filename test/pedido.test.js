@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../server');
+const app = require('../src/app');
 const db = require('../src/config/db');
 
 describe('Pruebas de rutas de Pedido', () => {
@@ -12,3 +12,4 @@ describe('Pruebas de rutas de Pedido', () => {
     await db.close();
   });
 });
+
