@@ -1,7 +1,7 @@
 const { Sequelize } = require("sequelize");
 
 // Configuración de conexión a la base de datos
-const sequelize = new Sequelize("mydb", "root", "r00t123", {
+const sequelize = new Sequelize("restaurante", "root", "r00t123", {
   host: "localhost",       // O la IP del servidor MySQL
   dialect: "mysql",        // Especificamos que usamos MySQL
   logging: false,          // Desactiva logs de SQL en consola
