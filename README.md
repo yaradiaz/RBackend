@@ -65,7 +65,11 @@ La base de datos fue diseñada a partir de un diagrama **Entidad-Relación (MER)
 ✅ Estructura del proyecto organizada por capas (MVC)  
 ✅ Creación del diagrama entidad-relación (MER)  
 ✅ Implementación de modelos en Sequelize  
-✅ Configuración y sincronización de la base de datos (`sync.js`)
+✅ Configuración y sincronización de la base de datos (`node sync.js`)
+✅ Verificación de base de datos y puerto 3000 (`node server.js`)
+✅ Configuración de pruebas
+✅ Verificación de pruebas (`npm test`)
+
 
 Se realizaron todas las tareas del sprint 1
 
