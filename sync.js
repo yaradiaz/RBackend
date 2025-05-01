@@ -4,7 +4,7 @@ const db = require('./src/config/db');
 require('./src/models/cliente.model');
 require('./src/models/menu.model');
 require('./src/models/pedido.model');
-require('./src/models/detallepedido.model');
+require('./src/models/detallepedidos.model');
 
 
 const syncDB = async () => {
