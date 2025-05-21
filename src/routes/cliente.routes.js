@@ -6,11 +6,11 @@ const { obtenerClientes, crearCliente } = require('../controllers/cliente.contro
  * @swagger
  * /api/clientes:
  *   get:
- *     summary: Verifica conexión con la base de datos y lista clientes
+ *     summary: Obtener todos los clientes
  *     tags: [Clientes]
  *     responses:
  *       200:
- *         description: Conexión establecida y datos devueltos desde la tabla cliente
+ *         description: Lista de clientes
  */
 
 /**
