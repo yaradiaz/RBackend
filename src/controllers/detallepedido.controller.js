@@ -11,8 +11,8 @@ const obtenerDetalles = async (req, res) => {
 
 const crearDetalle = async (req, res) => {
   try {
-    const { cantidad, subtotal, pedido_id_pedido, menu_id_menu } = req.body;
-    const nuevo = await DetallePedido.create({ cantidad, subtotal, pedido_id_pedido, menu_id_menu });
+    const { cantidad, subtotal, menu_id_menu, pedido_id_pedido } = req.body;
+    const nuevo = await DetallePedido.create({ cantidad, subtotal, menu_id_menu, pedido_id_pedido });
     res.status(201).json(nuevo);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al crear detalle' });
