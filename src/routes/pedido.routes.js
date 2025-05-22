@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { obtenerPedidos, crearPedido } = require('../controllers/pedido.controller');
+const verificarToken = require('../middleware/authMiddleware'); // 👈 Importa el middleware
 
 /**
  * @swagger
@@ -12,13 +13,16 @@ const { obtenerPedidos, crearPedido } = require('../controllers/pedido.controlle
  *       200:
  *         description: Conexión establecida y datos devueltos desde la tabla pedido
  */
+router.get('/', obtenerPedidos);
 
 /**
  * @swagger
  * /api/pedidos:
  *   post:
- *     summary: Crea un nuevo pedido
+ *     summary: Crea un nuevo pedido (requiere token JWT)
  *     tags: [Pedidos]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -28,7 +32,7 @@ const { obtenerPedidos, crearPedido } = require('../controllers/pedido.controlle
  *             properties:
  *               total:
  *                 type: number
- *                 example: 15000
+ *                 example: 10000
  *               cliente_id_cliente:
  *                 type: integer
  *                 example: 1
@@ -37,13 +41,12 @@ const { obtenerPedidos, crearPedido } = require('../controllers/pedido.controlle
  *               - cliente_id_cliente
  *     responses:
  *       201:
- *         description: Pedido creado correctamente
- *       500:
- *         description: Error al crear pedido
+ *         description: Pedido creado
+ *       403:
+ *         description: Token no proporcionado
+ *       401:
+ *         description: Token inválido
  */
-
-
-router.get('/', obtenerPedidos);
-router.post('/', crearPedido);
+router.post('/', verificarToken, crearPedido); // 👈 Protegida
 
 module.exports = router;
