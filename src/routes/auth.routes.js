@@ -2,36 +2,24 @@ const express = require('express');
 const router = express.Router();
 const { login } = require('../controllers/auth.controller');
 
-/**
- * @swagger
- * /api/login:
- *   post:
- *     summary: Inicia sesión con correo y contraseña
- *     tags: [Autenticación]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               correo:
- *                 type: string
- *                 example: usuario@correo.com
- *               contrasena:
- *                 type: string
- *                 example: password123
- *             required:
- *               - correo
- *               - contrasena
- *     responses:
- *       200:
- *         description: Token generado exitosamente
- *       401:
- *         description: Credenciales incorrectas
- *       500:
- *         description: Error en el servidor
- */
-router.post('/', login);
+router.post('/', 
+  // #swagger.tags = ['Autenticación']
+  // #swagger.summary = 'Inicia sesión con correo y contraseña'
+  // #swagger.requestBody = {
+  //   required: true,
+  //   content: {
+  //     "application/json": {
+  //       schema: {
+  //         correo: "usuario@correo.com",
+  //         contrasena: "password123"
+  //       }
+  //     }
+  //   }
+  // }
+  // #swagger.responses[200] = { description: "Token generado exitosamente" }
+  // #swagger.responses[401] = { description: "Credenciales incorrectas" }
+  // #swagger.responses[500] = { description: "Error en el servidor" }
+  login
+);
 
 module.exports = router;
