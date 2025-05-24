@@ -17,9 +17,13 @@ router.post('/',
   //   content: {
   //     "application/json": {
   //       schema: {
-  //         nombre: "Juan Perez",
-  //         correo: "juan.perez@example.com",
-  //         contrasena: "password123"
+  //         type: "object",
+  //         properties: {
+  //           nombre: { type: "string", example: "Juan Perez" },
+  //           correo: { type: "string", example: "juan.perez@example.com" },
+  //           contrasena: { type: "string", example: "password123" }
+  //         },
+  //         required: ["nombre", "correo", "contrasena"]
   //       }
   //     }
   //   }
@@ -29,6 +33,7 @@ router.post('/',
   // #swagger.responses[500] = { description: 'Error al crear cliente' }
   crearCliente
 );
+
 
 module.exports = router;
 

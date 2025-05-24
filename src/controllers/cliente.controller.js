@@ -15,6 +15,7 @@ const crearCliente = async (req, res) => {
     const nuevoCliente = await Cliente.create({ nombre, correo, contrasena });
     res.status(201).json(nuevoCliente);
   } catch (error) {
+     console.error(error); // 👈 Agregado
     res.status(500).json({ mensaje: 'Error al crear cliente' });
   }
 };

@@ -72,6 +72,32 @@
         ],
         "summary": "Crea un nuevo cliente",
         "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto cliente a crear",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Juan Perez"
+                },
+                "correo": {
+                  "type": "string",
+                  "example": "juan.perez@example.com"
+                },
+                "contrasena": {
+                  "type": "string",
+                  "example": "password123"
+                }
+              },
+              "required": ["nombre", "correo", "contrasena"]
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Cliente creado correctamente"
@@ -82,8 +108,7 @@
           "500": {
             "description": "Error al crear cliente"
           }
-        },
-        "requestBody": {}
+        }
       }
     },
     "/api/menu/": {
@@ -108,6 +133,36 @@
         ],
         "summary": "Crea un nuevo producto en el menú",
         "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto producto menú a crear",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nombre": {
+                  "type": "string",
+                  "example": "Hamburguesa"
+                },
+                "precio": {
+                  "type": "number",
+                  "example": 12000
+                },
+                "descripcion": {
+                  "type": "string",
+                  "example": "Deliciosa hamburguesa con queso"
+                },
+                "categoria": {
+                  "type": "string",
+                  "example": "Comida rápida"
+                }
+              },
+              "required": ["nombre", "precio", "descripcion", "categoria"]
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Producto creado correctamente"
@@ -115,8 +170,7 @@
           "500": {
             "description": "Error al crear producto"
           }
-        },
-        "requestBody": {}
+        }
       }
     },
     "/api/pedidos/": {
@@ -146,6 +200,26 @@
             "name": "authorization",
             "in": "header",
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Objeto pedido a crear",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "clienteId": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "total": {
+                  "type": "number",
+                  "example": 45000
+                }
+              },
+              "required": ["clienteId", "total"]
+            }
           }
         ],
         "responses": {
@@ -166,8 +240,7 @@
           {
             "bearerAuth": []
           }
-        ],
-        "requestBody": {}
+        ]
       }
     },
     "/api/detalles/": {
@@ -192,6 +265,37 @@
         ],
         "summary": "Crea un nuevo detalle de pedido",
         "description": "",
+        "parameters": [
+ {
+        "in": "body",
+        "name": "body",
+        "description": "Objeto detalle de pedido a crear",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "cantidad": {
+              "type": "integer",
+              "example": 2
+            },
+            "subtotal": {
+              "type": "number",
+              "format": "float",
+              "example": 24000.50
+            },
+            "menu_id_menu": {
+              "type": "integer",
+              "example": 3
+            },
+            "pedido_id_pedido": {
+              "type": "integer",
+              "example": 7
+            }
+          },
+          "required": ["cantidad", "subtotal", "menu_id_menu", "pedido_id_pedido"]
+        }
+      }
+        ],
         "responses": {
           "201": {
             "description": "Detalle de pedido creado correctamente"
@@ -199,8 +303,7 @@
           "500": {
             "description": "Error al crear detalle de pedido"
           }
-        },
-        "requestBody": {}
+        }
       }
     },
     "/api/login/": {
@@ -210,6 +313,28 @@
         ],
         "summary": "Inicia sesión con correo y contraseña",
         "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Credenciales de login",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "correo": {
+                  "type": "string",
+                  "example": "usuario@correo.com"
+                },
+                "contrasena": {
+                  "type": "string",
+                  "example": "password123"
+                }
+              },
+              "required": ["correo", "contrasena"]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Token generado exitosamente"
@@ -220,8 +345,7 @@
           "500": {
             "description": "Error en el servidor"
           }
-        },
-        "requestBody": {}
+        }
       }
     }
   }
