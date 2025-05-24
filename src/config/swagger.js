@@ -1,8 +1,4 @@
-// Generación del archivo swagger.json con la documentación
-swaggerAutogen()(outputFile, endPointsFiles, doc);
-
-
-import swaggerAutogen from 'swagger-autogen';
+const swaggerAutogen = require('swagger-autogen');
 
 const outputFile = './swagger.json';
 const endPointsFiles = ['./src/app.js'];
@@ -30,4 +26,4 @@ const doc = {
   }
 };
 
-swaggerAutogen()(outputFile, endPointsFiles, doc);
+swaggerAutogen(outputFile, endPointsFiles, doc);
