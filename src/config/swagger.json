@@ -40,12 +40,26 @@
     }
   },
   "paths": {
-    "/api/clientes/": {
+    "/": {
       "get": {
         "description": "",
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/clientes/": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "summary": "Obtener todos los clientes",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Lista de clientes"
           },
           "500": {
             "description": "Internal Server Error"
@@ -53,43 +67,35 @@
         }
       },
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "example": "any"
-                },
-                "correo": {
-                  "example": "any"
-                },
-                "contrasena": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Clientes"
         ],
+        "summary": "Crea un nuevo cliente",
+        "description": "",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Cliente creado correctamente"
+          },
+          "400": {
+            "description": "Datos inválidos o faltantes"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al crear cliente"
           }
-        }
+        },
+        "requestBody": {}
       }
     },
     "/api/menu/": {
       "get": {
+        "tags": [
+          "Menú"
+        ],
+        "summary": "Verifica conexión con la base de datos y lista menú",
         "description": "",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Conexión establecida y datos devueltos desde la tabla menú"
           },
           "500": {
             "description": "Internal Server Error"
@@ -97,46 +103,32 @@
         }
       },
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "nombre": {
-                  "example": "any"
-                },
-                "descripcion": {
-                  "example": "any"
-                },
-                "categoria": {
-                  "example": "any"
-                },
-                "precio": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Menú"
         ],
+        "summary": "Crea un nuevo producto en el menú",
+        "description": "",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Producto creado correctamente"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al crear producto"
           }
-        }
+        },
+        "requestBody": {}
       }
     },
     "/api/pedidos/": {
       "get": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Verifica conexión con la base de datos y lista pedidos",
         "description": "",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Conexión establecida y datos devueltos desde la tabla pedido"
           },
           "500": {
             "description": "Internal Server Error"
@@ -144,51 +136,50 @@
         }
       },
       "post": {
+        "tags": [
+          "Pedidos"
+        ],
+        "summary": "Crea un nuevo pedido (requiere token JWT)",
         "description": "",
         "parameters": [
           {
             "name": "authorization",
             "in": "header",
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "total": {
-                  "example": "any"
-                },
-                "cliente_id_cliente": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Pedido creado"
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Token inválido"
           },
           "403": {
-            "description": "Forbidden"
+            "description": "Token no proporcionado"
           },
           "500": {
             "description": "Internal Server Error"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {}
       }
     },
     "/api/detalles/": {
       "get": {
+        "tags": [
+          "Detalles de Pedido"
+        ],
+        "summary": "Verifica conexión con la base de datos y lista detalles de pedido",
         "description": "",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Conexión establecida y datos devueltos desde la tabla detalle_pedido"
           },
           "500": {
             "description": "Internal Server Error"
@@ -196,38 +187,41 @@
         }
       },
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "cantidad": {
-                  "example": "any"
-                },
-                "subtotal": {
-                  "example": "any"
-                },
-                "menu_id_menu": {
-                  "example": "any"
-                },
-                "pedido_id_pedido": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Detalles de Pedido"
         ],
+        "summary": "Crea un nuevo detalle de pedido",
+        "description": "",
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Detalle de pedido creado correctamente"
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Error al crear detalle de pedido"
           }
-        }
+        },
+        "requestBody": {}
+      }
+    },
+    "/api/login/": {
+      "post": {
+        "tags": [
+          "Autenticación"
+        ],
+        "summary": "Inicia sesión con correo y contraseña",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Token generado exitosamente"
+          },
+          "401": {
+            "description": "Credenciales incorrectas"
+          },
+          "500": {
+            "description": "Error en el servidor"
+          }
+        },
+        "requestBody": {}
       }
     }
   }
