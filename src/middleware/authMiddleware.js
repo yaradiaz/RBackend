@@ -1,11 +1,17 @@
 const jwt = require('jsonwebtoken');
 
 const verificarToken = (req, res, next) => {
-  const token = req.headers['authorization'];
+  const authHeader = req.headers['authorization'];
 
-  if (!token) {
+  if (!authHeader) {
     return res.status(403).json({ mensaje: 'Token no proporcionado' });
   }
+
+   const token = authHeader.split(' ')[1]; // 👈 Extrae solo el token
+
+  if (!token) {
+    return res.status(403).json({ mensaje: 'Token no válido' });
+  }   
 
   try {
     const decoded = jwt.verify(token, 'contrasena_segura'); // Debe coincidir con la del login

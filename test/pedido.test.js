@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../src/app'); // o '../server' si lo haces así
+const app = require('../src/app'); 
 const db = require('../src/config/db');
 
 describe('Pruebas de rutas de Pedido', () => {
@@ -16,7 +16,7 @@ describe('Pruebas protegidas de pedidos con JWT', () => {
     const login = await request(app)
       .post('/api/login')
       .send({
-        correo: 'cliente1@example.com',
+        correo: 'yara@gmail.com',
         contrasena: '123456'
       });
 
@@ -35,7 +35,8 @@ describe('Pruebas protegidas de pedidos con JWT', () => {
   test('Debe permitir crear pedido con token válido', async () => {
     const res = await request(app)
       .post('/api/pedidos')
-      .set('Authorization', token)
+      .set('Authorization', `Bearer ${token}`)
+
       .send({ total: 15000, cliente_id_cliente: 1 });
 
     expect(res.statusCode).toBe(201);
