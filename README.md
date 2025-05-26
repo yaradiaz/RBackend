@@ -7,14 +7,19 @@ Este proyecto es un backend para un sistema de gestión de restaurante, desarrol
 ## 📁 Estructura del Proyecto
 
 /restaurante
- │── /src │ 
-          ├── /config # Conexión a la base de datos │ 
-          ├── /controllers # Lógica de negocio (CRUD) │ 
-          ├── /models # Modelos Sequelize (estructura de las tablas) │ 
-          ├── /routes # Endpoints HTTP 
-  │── server.js # Punto de entrada de la aplicación 
-  │── sync.js # Sincronización de la base de datos 
-  │── package.json # Dependencias y scripts
+│── /src
+│   ├── /config         # Configuración de base de datos (Sequelize)
+│   ├── /controllers    # Lógica de negocio (CRUD)
+│   ├── /models         # Definición de modelos Sequelize
+│   ├── /routes         # Endpoints HTTP
+│   ├── /middleware     # Autenticación con JWT
+│
+├── /test               # Pruebas unitarias e integración
+├── server.js           # Punto de entrada del servidor
+├── swagger.js          # Generación automática de documentación
+├── swagger.json        # Archivo Swagger generado
+├── sync.js             # Sincronización de la base de datos
+├── package.json        # Dependencias y scripts
 
 
 ---
@@ -62,16 +67,13 @@ La base de datos fue diseñada a partir de un diagrama **Entidad-Relación (MER)
 
 ## 🚀 Funcionalidades Implementadas
 
-✅ Estructura del proyecto organizada por capas (MVC)  
-✅ Creación del diagrama entidad-relación (MER)  
-✅ Implementación de modelos en Sequelize  
-✅ Configuración y sincronización de la base de datos (`node sync.js`)
-✅ Verificación de base de datos y puerto 3000 (`node server.js`)
-✅ Configuración de pruebas
-✅ Verificación de pruebas (`npm test`)
-
-
-Se realizaron todas las tareas del sprint 1
+Funcionalidades Implementadas
+✅ Arquitectura MVC
+✅ CRUD para Cliente, Menú, Pedido y DetallePedido
+✅ JWT Authentication (Login y rutas protegidas)
+✅ Swagger UI para documentación automática (/document)
+✅ Pruebas unitarias y de integración con Jest y Supertest
+✅ Mejora de seguridad OWASP API2:2023 (Autenticación rota)
 
 ---
 
@@ -88,6 +90,28 @@ Se realizaron todas las tareas del sprint 1
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/tuusuario/restaurante-backend.git
-   cd restaurante-backend
+   cd restaurante-backen
+
+2. Limpiar la base de datos:
+   ```bash
+   node sync.js
+
+3. Iniciar el servidor
+   ```bash
+   node server
+
+4. Probar cada ruta
+   ```bash
+   http://localhost:3000/api/nombre_ruta
+   
+5. Probar test
+   ```bash
+   npm test
+
+   
+
+
+
+   
 
 
