@@ -2,12 +2,18 @@ const jwt = require('jsonwebtoken');
 
 const verificarToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
+  console.log('Header recibido:', authHeader);
 
   if (!authHeader) {
     return res.status(403).json({ mensaje: 'Token no proporcionado' });
   }
 
-   const token = authHeader.split(' ')[1]; // 👈 Extrae solo el token
+    const token = authHeader.startsWith('Bearer ')
+  ?    authHeader.split(' ')[1]
+  :    authHeader;
+
+
+   //const token = authHeader.split(' ')[1]; // 👈 Extrae solo el token
 
   if (!token) {
     return res.status(403).json({ mensaje: 'Token no válido' });
