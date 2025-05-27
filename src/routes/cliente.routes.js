@@ -22,7 +22,7 @@ router.post('/',
   //           nombre: { type: "string", example: "Juan Perez" },
   //           correo: { type: "string", example: "juan.perez@example.com" },
   //           contrasena: { type: "string", example: "password123" }
-  //         },
+  //         }, 
   //         required: ["nombre", "correo", "contrasena"]
   //       }
   //     }

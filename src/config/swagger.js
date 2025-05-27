@@ -17,7 +17,7 @@ const doc = {
     { name: 'Detalles de Pedido', description: 'Detalle de productos por pedido' },
     { name: 'Autenticación', description: 'Login y seguridad con JWT' },
   ],
-  securityDefinitions: {
+  securityDefinitions: {  //para el token
     bearerAuth: {
       type: 'http',
       scheme: 'bearer',
@@ -27,3 +27,5 @@ const doc = {
 };
 
 swaggerAutogen(outputFile, endPointsFiles, doc);
+
+//nuevo
